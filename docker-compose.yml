@@ -1,0 +1,47 @@
+version: '3.6'
+services:
+  api:
+    build:
+      context: ./api
+    command: npm run debug
+    container_name: api
+    links:
+      - db:mysql
+    depends_on:
+     - db
+    environment:
+     - DATABASE_HOST=db
+    ports:
+      - '4000:4000'
+      - '9229:9229'
+      - '3000:3000'
+      - '35729:35729'
+    volumes:
+      - './api/src:/var/build/src'
+      - '/var/build/node_modules'
+  client:
+    build:
+      context: ./client
+    command: npm run docker:start
+    container_name: client
+    network_mode: service:api
+    volumes:
+      - './client/src:/var/build/src'
+      - './client/scripts:/var/build/scripts'
+      - '/var/build/node_modules'
+    environment:
+      - NODE_ENV=development
+  db:
+    image: mysql:latest
+    container_name: db
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./db:/var/lib/mysql
+    ports:
+      - 3307:3306
+    environment:
+     - MYSQL_ROOT_PASSWORD=password
+     - MYSQL_DATABASE=dps_db
+     - MYSQL_USER=dps_user
+     - MYSQL_PASSWORD=dps_password

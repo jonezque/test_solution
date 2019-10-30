@@ -1,0 +1,9 @@
+
+li:hover {
+  color: #086879;
+}
+
+li {
+  cursor: pointer;
+  transition: color 400ms;
+}

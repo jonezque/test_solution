@@ -1,0 +1,43 @@
+.App-header {
+  padding: 20px 0;
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-search {
+  padding: 10px;
+  display: flex;
+  width: 80%;
+}
+
+.App-search > input {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border: none;
+  padding: 5px;
+  color: #086879;
+  flex: 1;
+}
+
+.App-search > button {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding: 5px 10px;
+  border: none;
+  color: white;
+  transition: all 400ms;
+  background: #086879;
+}
+
+.App-search > button:hover {
+  color: #086879;
+  background: rgb(224, 224, 224);
+}
+
+main {
+  padding: 20px;
+}
